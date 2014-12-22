@@ -1,0 +1,7 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  ul.nav.nav-tabs
+    li(class="presentation", ng-class='{active: isActive("/admin/users")}')
+      a(href="/admin/users") Users
+    li(class="presentation", ng-class='{active: isActive("/admin/posts")}')
+      a(href="/admin/posts") Posts

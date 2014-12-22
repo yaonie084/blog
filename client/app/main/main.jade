@@ -1,0 +1,53 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+header#banner.hero-unit
+  .container
+    h1 Ethan's blog!
+    p.lead 这是一个express+angularjs的练手项目
+    img(src='assets/images/yeoman.png', alt='I\'m Yeoman')
+
+.container
+  .row
+    .col-lg-12
+      h1.page-header Features:
+      ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in awesomeThings')
+        li
+          a(href='#', tooltip='{{thing.info}}')
+            | {{thing.name}}
+            button.close(type='button', ng-click='deleteThing(thing)') ×
+
+  form.thing-form
+    label Syncs in realtime across clients
+    p.input-group
+      input.form-control(type='text', placeholder='Add a new thing here.', ng-model='newThing')
+      span.input-group-btn
+        button.btn.btn-primary(type='submit', ng-click='addThing()') Add New
+
+  .row
+    .col-lg-12
+      section.post
+        header.entry-header
+          img.entry-avatar(alt='ethan', height='52', width='52', src='http://www.gravatar.com/avatar/66612698df349a3c9ab25ea7c6e530ff.jpg?52')
+          h2.entry-title
+            a(href='#') 测试一下title
+          p.entry-meta Posted on&nbsp
+            a.entry-date 2014-12-22
+            | | by&nbsp
+            a.entry-author Ethan Wang
+            | | Tags&nbsp
+            a.label.label-danger CSS
+
+        .entry-description
+          p 再测试一下好吗？
+
+      section.comments
+
+
+footer.footer
+  .container
+    p
+      | Ethan Wang
+      = ' | '
+      a(href='#') @tyhenkel
+      = ' | '
+      a(href='#') Issues
