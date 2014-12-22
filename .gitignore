@@ -7,4 +7,4 @@ public
 client/bower_components
 dist
 /server/config/local.env.js
-test_scripts/
+/server/test_scripts/
