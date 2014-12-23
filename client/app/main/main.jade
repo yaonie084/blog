@@ -25,20 +25,20 @@ header#banner.hero-unit
 
   .row
     .col-lg-12
-      section.post
+      section.post(ng-repeat='post in posts')
         header.entry-header
-          img.entry-avatar(alt='ethan', height='52', width='52', src='http://www.gravatar.com/avatar/66612698df349a3c9ab25ea7c6e530ff.jpg?52')
+          img.entry-avatar(alt='{{ post.author_name }}', height='52', width='52', src='http://www.gravatar.com/avatar/66612698df349a3c9ab25ea7c6e530ff.jpg?52')
           h2.entry-title
-            a(href='#') 测试一下title
+            a(href='/posts/{{ post._id }}') {{ post.title }}
           p.entry-meta Posted on&nbsp
-            a.entry-date 2014-12-22
+            a.entry-date {{ post.created_at }}
             | | by&nbsp
             a.entry-author Ethan Wang
             | | Tags&nbsp
-            a.label.label-danger CSS
+            a.label.label-danger.label-fix(ng-repeat='tag in post.tags') {{ tag }}
 
         .entry-description
-          p 再测试一下好吗？
+          p {{ post.description }}
 
       section.comments
 
