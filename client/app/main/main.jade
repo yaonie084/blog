@@ -31,7 +31,7 @@ header#banner.hero-unit
           h2.entry-title
             a(href='/posts/{{ post._id }}') {{ post.title }}
           p.entry-meta Posted on&nbsp
-            a.entry-date {{ post.created_at }}
+            a.entry-date {{ post.created_at | date: 'yyyy-MM-dd HH:mm' }}
             | | by&nbsp
             a.entry-author Ethan Wang
             | | Tags&nbsp

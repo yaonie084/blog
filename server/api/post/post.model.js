@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 
 var PostSchema = new Schema({
   title: String,
-  author: {type: String, ref: 'User'},
+  author: {type: {}, ref: 'User'},
   description: String,
   created_at: {type: Date,'default': Date.now},
   tags: [String],
