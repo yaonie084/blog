@@ -4,13 +4,13 @@ br
   p
     | edit or delete posts in this page
   p
-    a.btn.btn-primary New Post
+    a.btn.btn-primary(href="/admin/posts/new") New Post
   ul.list-group
     li.list-group-item(ng-repeat='post in posts')
       strong {{ post.title }}
       br
       span.text-muted {{ post.description }}
-      a.trash
+      a.trash(ng-click='delete(post)')
         span.glyphicon.glyphicon-trash.pull-right
       br
       a.label.label-warning.label-fix(ng-repeat='tag in post.tags') {{ tag }}

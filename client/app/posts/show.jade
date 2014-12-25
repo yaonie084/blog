@@ -1,10 +1,16 @@
 div(ng-include='"components/navbar/navbar.html"')
 .container
-    p {{ foo }}
-    p hehehe
-    p {{ postID }}
-    p "title: {{post.title}}"
-    p "description: {{ post.description }}"
-    p "author: {{ post.author.name }}"
-    p "created_at: {{ post.created_at }}"
-    p "tags: {{post.tags}}"
+  section.post
+    header.entry-header
+      img.entry-avatar(alt='{{ post.author.name }}', height='52', width='52', src='http://www.gravatar.com/avatar/66612698df349a3c9ab25ea7c6e530ff.jpg?52')
+      h2.entry-title
+        a(href='/posts/{{ post._id }}') {{ post.title }}
+      p.entry-meta Posted on&nbsp
+        a.entry-date {{ post.created_at | date: 'yyyy-MM-dd HH:mm' }}
+        | | by&nbsp
+        a.entry-author {{ post.author.name }}
+        | | Tags&nbsp
+        a.label.label-danger.label-fix(ng-repeat='tag in post.tags') {{ tag }}
+
+    .entry-description
+      p {{ post.description }}

@@ -22,5 +22,5 @@ angular.module 'myblogApp'
   $scope.deleteThing = (thing) ->
     $http.delete '/api/things/' + thing._id
 
-  $scope.$on '$destroy', ->
-    socket.unsyncUpdates 'thing'
+#  $scope.$on '$destroy', ->
+#    socket.unsyncUpdates 'thing'

@@ -1,0 +1,19 @@
+div(ng-include='"app/admin/admin.html"')
+.container
+  section.post
+    form.form(name='form', ng-submit='createPost(form)', novalidate='')
+      .form-group
+        label Title
+        input.form-control(type='text', name='title', ng-model='post.title')
+
+      .form-group
+        label description
+        input.form-control(type='text', name='description', ng-model='post.description')
+
+      .form-group
+        label tags
+        input.form-control(type='text', name='tags', ng-model='post.tags')
+
+      div
+        button.btn.btn-success.btn-lg(type='submit')
+          | Submit
