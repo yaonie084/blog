@@ -37,6 +37,21 @@ exports.create = function(req, res) {
   });
 };
 
+exports.update = function(req, res) {
+  var postId = req.body._id;
+  var post = req.body;
+  console.log(post)
+  console.log(post.tags)
+  post.tags = post.tags.split(',')
+  Post.findByIdAndUpdate(postId, post, function (err, post) {
+
+      post.update(function(err) {
+        if (err) return validationError(res, err);
+        res.send(200);
+      });
+   });
+};
+
 // Deletes a post from the DB.
 exports.destroy = function(req, res) {
   Post.findById(req.params.id, function (err, post) {

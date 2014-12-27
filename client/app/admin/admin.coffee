@@ -15,4 +15,8 @@ angular.module 'myblogApp'
     url: "/admin/posts/new"
     templateUrl: 'app/admin/posts/new.html'
     controller: 'AdminPostNewCtrl'
+  .state 'admin/posts/:postId/edit',
+    url: "/admin/posts/{postId}/edit"
+    templateUrl: 'app/admin/posts/edit.html'
+    controller: 'AdminPostEditCtrl'
 

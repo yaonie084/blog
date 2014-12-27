@@ -13,4 +13,4 @@ div(ng-include='"components/navbar/navbar.html"')
         a.label.label-danger.label-fix(ng-repeat='tag in post.tags') {{ tag }}
 
     .entry-description
-      p {{ post.description }}
+      p(ng-bind-html="post.description")

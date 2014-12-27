@@ -1,7 +1,7 @@
 div(ng-include='"app/admin/admin.html"')
 .container
   section.post
-    form.form(name='form', ng-submit='createPost(form)', novalidate='')
+    form.form(name='form', ng-submit='updatePost(form)', novalidate='')
       .form-group
         label Title
         input.form-control(type='text', name='title', ng-model='post.title')

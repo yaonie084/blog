@@ -12,5 +12,9 @@ br
       span.text-muted {{ post.description }}
       a.trash(ng-click='delete(post)')
         span.glyphicon.glyphicon-trash.pull-right
+
+      a.edit(href='/admin/posts/{{ post._id }}/edit')
+        span.glyphicon.glyphicon-wrench.pull-right
+
       br
       a.label.label-warning.label-fix(ng-repeat='tag in post.tags') {{ tag }}

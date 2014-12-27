@@ -26,3 +26,29 @@ angular.module 'myblogApp'
     if $location.path().indexOf(route) == -1
       return false
     true
+
+.controller 'AdminPostEditCtrl', ($scope, $location, $http, $stateParams, Post) ->
+  $id = $stateParams.postId
+  $scope.post = Post.get id: $id
+  $scope.updatePost = (form) ->
+    if form.$valid
+      $http.put "/api/posts/#{$id}/update", $scope.post
+      .success (data) ->
+        $location.path '/admin/posts'
+
+  $scope.isActive = (route) ->
+    if $location.path().indexOf(route) == -1
+      return false
+    true
+
+.directive "ckEditor", [->
+  require: "?ngModel"
+  link: ($scope, elm, attr, ngModel) ->
+    ck = CKEDITOR.replace(elm[0])
+    ck.on "pasteState", ->
+      $scope.$apply ->
+        ngModel.$setViewValue ck.getData()
+
+    ngModel.$render = (value) ->
+      ck.setData ngModel.$modelValue
+]
