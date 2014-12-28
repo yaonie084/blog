@@ -29,7 +29,10 @@ angular.module 'myblogApp'
 
 .controller 'AdminPostEditCtrl', ($scope, $location, $http, $stateParams, Post) ->
   $id = $stateParams.postId
-  $scope.post = Post.get id: $id
+  Post.get id: $id,
+    (data) ->
+      $scope.post = data
+      $scope.post.tags = $scope.post.tags.join()
   $scope.updatePost = (form) ->
     if form.$valid
       $http.put "/api/posts/#{$id}/update", $scope.post

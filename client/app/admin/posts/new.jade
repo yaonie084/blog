@@ -7,6 +7,10 @@ div(ng-include='"app/admin/admin.html"')
         input.form-control(type='text', name='title', ng-model='post.title')
 
       .form-group
+        label Summary
+        input.form-control(type='text', name='title', ng-model='post.summary')
+
+      .form-group
         label description
         textarea.form-control(data-ck-editor, type='text', name='description', ng-model='post.description')
 

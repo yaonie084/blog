@@ -6,7 +6,8 @@ angular.module 'myblogApp', [
   'ngSanitize',
   'btford.socket-io',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ui.gravatar'
 ]
 .config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) ->
   $urlRouterProvider
@@ -30,6 +31,10 @@ angular.module 'myblogApp', [
       $cookieStore.remove 'token'
 
     $q.reject response
+
+.filter "fromNow", ->
+  (date) ->
+    moment(date).fromNow()
 
 .run ($rootScope, $location, Auth) ->
   # Redirect to login if route requires auth and you're not logged in

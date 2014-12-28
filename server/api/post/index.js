@@ -6,6 +6,8 @@ var controller = require('./post.controller');
 
 var router = express.Router();
 
+router.use("/comments", require('../comment'));
+
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.post('/', auth.isAuthenticated(), controller.create);

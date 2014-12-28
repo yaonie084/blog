@@ -3,6 +3,10 @@ var _ = require('lodash');
 var Post = require('./post.model');
 var User = require('../user/user.model');
 
+var validationError = function(res, err) {
+  return res.json(422, err);
+};
+
 exports.index = function(req, res){
   Post.find(function(err, posts){
     if(err) { return handleError(res, err); }
@@ -14,7 +18,10 @@ exports.show = function(req, res) {
   Post.findById(req.params.id, function (err, post) {
     if(err) { return handleError(res, err); }
     if(!post) { return res.send(404); }
-    return res.json(post);
+  })
+  .populate('comments')
+  .exec(function(err, post){
+    return res.json(200, post);
   });
 };
 
@@ -40,15 +47,11 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   var postId = req.body._id;
   var post = req.body;
-  console.log(post)
-  console.log(post.tags)
   post.tags = post.tags.split(',')
+  delete post._id
   Post.findByIdAndUpdate(postId, post, function (err, post) {
-
-      post.update(function(err) {
-        if (err) return validationError(res, err);
-        res.send(200);
-      });
+    if (err) return validationError(res, err);
+    res.send(200);
    });
 };
 

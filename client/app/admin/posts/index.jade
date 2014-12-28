@@ -9,7 +9,7 @@ br
     li.list-group-item(ng-repeat='post in posts')
       strong {{ post.title }}
       br
-      span.text-muted {{ post.description }}
+      span.text-muted {{ post.summary }}
       a.trash(ng-click='delete(post)')
         span.glyphicon.glyphicon-trash.pull-right
 

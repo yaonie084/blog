@@ -2,7 +2,7 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   section.post
     header.entry-header
-      img.entry-avatar(alt='{{ post.author.name }}', height='52', width='52', src='http://www.gravatar.com/avatar/66612698df349a3c9ab25ea7c6e530ff.jpg?52')
+      img.entry-avatar(alt='{{post.author.name}}', gravatar-src-once="post.author.email", height='52', width='52')
       h2.entry-title
         a(href='/posts/{{ post._id }}') {{ post.title }}
       p.entry-meta Posted on&nbsp
@@ -14,3 +14,41 @@ div(ng-include='"components/navbar/navbar.html"')
 
     .entry-description
       p(ng-bind-html="post.description")
+
+  section.comments
+    h2 Commets
+    hr
+    .scroll-content(ng-repeat='comment in post.comments')
+      .itemdiv.dialogdiv
+        .user
+          img(alt='{{comment.name}}"s Avatar', gravatar-src-once="comment.email")
+        .body
+          .time
+            i.ace-icon.fa.fa-clock-o
+            span {{ comment.created_at | fromNow }}
+          .email
+            span {{ comment.email }}
+          .name
+            a(href='#') {{ comment.name }}
+
+          .text {{ comment.content }}
+          .tools
+            a.btn.btn-minier.btn-info(href='#')
+              i.icon-only.ace-icon.fa.fa-share
+
+    form.form-horizontal(name='form', ng-submit='createComment(form)', novalidate='')
+      .form-group
+        label.col-sm-2.control-label(for='email') Email
+        .col-sm-10
+          input#email.form-control(placeholder='Email', ng-model='comment.email')
+      .form-group
+        label.col-sm-2.control-label(for='name') Name
+        .col-sm-10
+          input#name.form-control(placeholder='Name', ng-model='comment.name')
+      .form-group
+        label.col-sm-2.control-label(for='content') Content
+        .col-sm-10
+          input#content.form-control(placeholder='Content', ng-model='comment.content')
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          button.btn.btn-success(type='submit') submit
