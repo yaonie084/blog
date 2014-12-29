@@ -550,25 +550,25 @@ module.exports = function (grunt) {
 
       },
       // Inject application script files into index.html (doesn't include bower)
-      // scripts: {
-      //   options: {
-      //     transform: function(filePath) {
-      //       filePath = filePath.replace('/client/', '');
-      //       filePath = filePath.replace('/.tmp/', '');
-      //       return '<script src="' + filePath + '"></script>';
-      //     },
-      //     starttag: '<!-- injector:js -->',
-      //     endtag: '<!-- endinjector -->'
-      //   },
-      //   files: {
-      //     '<%= yeoman.client %>/index.html': [
-      //         ['{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
-      //          '!{.tmp,<%= yeoman.client %>}/app/app.js',
-      //          '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
-      //          '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js']
-      //       ]
-      //   }
-      // },
+      scripts: {
+        options: {
+          transform: function(filePath) {
+            filePath = filePath.replace('/client/', '');
+            filePath = filePath.replace('/.tmp/', '');
+            return '<script src="' + filePath + '"></script>';
+          },
+          starttag: '<!-- injector:js -->',
+          endtag: '<!-- endinjector -->'
+        },
+        files: {
+          '<%= yeoman.client %>/index.html': [
+              ['{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
+               '!{.tmp,<%= yeoman.client %>}/app/app.js',
+               '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
+               '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js']
+            ]
+        }
+      },
 
       // Inject component scss into app.scss
       sass: {
